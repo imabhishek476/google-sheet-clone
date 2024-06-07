@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import Cell from "./Cell";
 import "./Grid.css";
 import { useEffect } from "react";
 
-const Grid = () => {
+const Grid = ({CountCells}) => {
   const [focusedCell, setFocusedCell] = useState(null);
   const [cellData, setCellData] = useState([]);
   const [isColor, setIsColor] = useState(false);
@@ -59,16 +60,12 @@ const Grid = () => {
 
   return (
     <div className="grid">
-      {Array.from({ length: 4 }).map((_, row) => (
+      {Array.from({ length: CountCells || 4}).map((_, row) => (
         <div className="row" key={row}>
-          {Array.from({ length: 4 }).map((_, col) => renderCell(row, col))}
+          {Array.from({ length: CountCells || 4}).map((_, col) => renderCell(row, col))}
         </div>
       ))}
 
-      {/* separate */}
-      {/* separate */}
-      {/* separate */}
-      {/* separate */}
       <div style={{ marginTop: "1rem" }}>
         <button
           style={{
@@ -76,10 +73,9 @@ const Grid = () => {
             backgroundColor: "cyan",
             cursor: "pointer",
           }}
-          onClick={() => setIsColor(true)}
-          disabled={isColor}
+          onClick={() => setIsColor((prev)=>!prev)}
         >
-          Enable to change Background Color
+          {isColor? "Disable" : "Enable"} to change Background Color
         </button>
       </div>
     </div>

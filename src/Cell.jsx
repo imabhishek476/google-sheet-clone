@@ -35,7 +35,6 @@ const Cell = ({
 
   const handleColorChange = (color) => {
     onColorChange(row, col, color);
-    setIsColor(false)
   };
 
   return (
