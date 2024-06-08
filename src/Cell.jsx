@@ -13,7 +13,6 @@ const Cell = ({
   onChange,
   onColorChange,
   isColor,
-  setIsColor,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
 
@@ -54,7 +53,7 @@ const Cell = ({
           autoFocus
         />
       ) : (
-        <div>{content}</div>
+        <div style={{overflow:"hidden"}}>{content}</div>
       )}
       {isFocused && (
         <div

@@ -9,6 +9,7 @@ const Grid = ({CountCells}) => {
   const [focusedCell, setFocusedCell] = useState(null);
   const [cellData, setCellData] = useState([]);
   const [isColor, setIsColor] = useState(false);
+  const [keyStatus, setKeyStatus] = useState(false);
 
   const handleFocus = (row, col) => {
     setFocusedCell({ row, col });
@@ -57,6 +58,33 @@ const Grid = ({CountCells}) => {
   // useEffect(()=>{
   //   console.log(cellData)
   // },[cellData])
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      const { row, col } = focusedCell;
+      switch (e.key) {
+        case 'ArrowUp':
+          if (row > 0) setFocusedCell({ row: row - 1, col });
+          break;
+        case 'ArrowDown':
+          if (row < CountCells-1) setFocusedCell({ row: row + 1, col });
+          break;
+        case 'ArrowLeft':
+          if (col > 0) setFocusedCell({ row, col: col - 1 });
+          break;
+        case 'ArrowRight':
+          if (col < CountCells-1) setFocusedCell({ row, col: col + 1 });
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [focusedCell]);
 
   return (
     <div className="grid">
