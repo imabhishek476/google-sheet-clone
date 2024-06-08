@@ -98,7 +98,7 @@ const Grid = ({ CountCells }) => {
         ))}
       </div>
 
-      <div style={{ marginTop: "1rem" }}>
+      <div style={{ marginTop: "1.8rem" }}>
         <button
           style={{
             padding: "10px",
