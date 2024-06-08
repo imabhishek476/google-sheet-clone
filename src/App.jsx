@@ -4,7 +4,7 @@ import "./App.css";
 import { useState } from "react";
 
 const App = () => {
-  const [CountCells, setCountCells] = useState(0);
+  const [CountCells, setCountCells] = useState(4);
 
   const onChangeOption = (e) =>{
     console.log(e.target.value)
@@ -17,7 +17,7 @@ const App = () => {
     <div className="App">
       <h1>Google Sheets Clone</h1>
       <div>
-        <select style={{padding:"10px", marginBottom:"10px"}}  onChange={(e)=>onChangeOption(e)} name="Hey" id="">
+        <select style={{padding:"10px", marginBottom:"10px"}}  onChange={(e)=>onChangeOption(e)} name="Hey" id="" value={CountCells}>
           <option value={0}>Please select Number of Rows & Columns</option>
           {
             Array.from({length: 10}).map((item,index)=>{

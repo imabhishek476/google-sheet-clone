@@ -60,13 +60,13 @@ const Grid = ({CountCells}) => {
 
   return (
     <div className="grid">
-      {Array.from({ length: CountCells || 4}).map((_, row) => (
+      {Array.from({ length: CountCells}).map((_, row) => (
         <div className="row" key={row}>
-          {Array.from({ length: CountCells || 4}).map((_, col) => renderCell(row, col))}
+          {Array.from({ length: CountCells}).map((_, col) => renderCell(row, col))}
         </div>
       ))}
 
-      <div style={{ marginTop: "1rem" }}>
+      <div style={{ marginTop: "1rem"}}>
         <button
           style={{
             padding: "10px",
