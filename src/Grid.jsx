@@ -5,7 +5,7 @@ import Cell from "./Cell";
 import "./Grid.css";
 import { useEffect } from "react";
 
-const Grid = ({CountCells}) => {
+const Grid = ({ CountCells }) => {
   const [focusedCell, setFocusedCell] = useState(null);
   const [cellData, setCellData] = useState([]);
   const [isColor, setIsColor] = useState(false);
@@ -18,14 +18,14 @@ const Grid = ({CountCells}) => {
   const handleChange = (row, col, content) => {
     setCellData((prevData) => ({
       ...prevData,
-      [`${row}-${col}`]: { ...prevData[`${row}-${col}`], content },
+      [`${row}-${col}`]: { ...prevData[`${row}-${col}`], content }
     }));
   };
 
   const handleColorChange = (row, col, color) => {
     setCellData((prevData) => ({
       ...prevData,
-      [`${row}-${col}`]: { ...prevData[`${row}-${col}`], color },
+      [`${row}-${col}`]: { ...prevData[`${row}-${col}`], color }
     }));
   };
 
@@ -63,50 +63,54 @@ const Grid = ({CountCells}) => {
     const handleKeyDown = (e) => {
       const { row, col } = focusedCell;
       switch (e.key) {
-        case 'ArrowUp':
+        case "ArrowUp":
           if (row > 0) setFocusedCell({ row: row - 1, col });
           break;
-        case 'ArrowDown':
-          if (row < CountCells-1) setFocusedCell({ row: row + 1, col });
+        case "ArrowDown":
+          if (row < CountCells - 1) setFocusedCell({ row: row + 1, col });
           break;
-        case 'ArrowLeft':
+        case "ArrowLeft":
           if (col > 0) setFocusedCell({ row, col: col - 1 });
           break;
-        case 'ArrowRight':
-          if (col < CountCells-1) setFocusedCell({ row, col: col + 1 });
+        case "ArrowRight":
+          if (col < CountCells - 1) setFocusedCell({ row, col: col + 1 });
           break;
         default:
           break;
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [focusedCell]);
 
   return (
-    <div className="grid">
-      {Array.from({ length: CountCells}).map((_, row) => (
-        <div className="row" key={row}>
-          {Array.from({ length: CountCells}).map((_, col) => renderCell(row, col))}
-        </div>
-      ))}
+    <>
+      <div className="grid">
+        {Array.from({ length: CountCells }).map((_, row) => (
+          <div className="row" key={row}>
+            {Array.from({ length: CountCells }).map((_, col) =>
+              renderCell(row, col)
+            )}
+          </div>
+        ))}
+      </div>
 
-      <div style={{ marginTop: "1rem"}}>
+      <div style={{ marginTop: "1rem" }}>
         <button
           style={{
             padding: "10px",
             backgroundColor: "cyan",
-            cursor: "pointer",
+            cursor: "pointer"
           }}
-          onClick={() => setIsColor((prev)=>!prev)}
+          onClick={() => setIsColor((prev) => !prev)}
         >
-          {isColor? "Disable" : "Enable"} to change Background Color
+          {isColor ? "Disable" : "Enable"} to change Background Color
         </button>
       </div>
-    </div>
+    </>
   );
 };
 
